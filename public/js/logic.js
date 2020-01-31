@@ -52,3 +52,26 @@ const Player = (name, symbol) => {
 
     return {getName, getSymbol, getScore, setScore, sayHello}
 }
+
+// gameBoard module
+const gameBoard = (() => {
+    const board = () => [null, null, null, null, null, null, null, null, null];
+    const makeMove = (board, index, symbol) => {
+        board[index]= symbol;
+        return board;
+    };
+    const checkWin = (board) => {
+        return false;
+    };
+    const checkTie = (board) => {
+        return false;
+    };
+
+    return {
+        board,
+        makeMove,
+        checkWin,
+        checkTie,
+    }
+
+})();

@@ -1,41 +1,3 @@
-/*
-
-const game = {checkWin: function() {
-    //all the possibilities of some player win the game
-    //if it finds a winner, the continueGame will be false
-
-}, checkTie: function() {
-    // the possibilitie of tie 
-    //if it finds a tie, the continueGame will be false
-
-}, turnCounter: 0,
-
-playerTurn: function() {
-    //checks the turn of the player
-},
-
-bothPlayers: [{},{}],
-// each object represents a player
-
-board: {},
-// just a board to players play
-
-
-advanceGame: function() {
-    // if continueGame = true, advanceGame will run, else -false- the advance Game will stop
-    // it will call the function that check if there is a winner, a tie or a possible empty field to be marked.
-},
-
-startGame: function(player1, player2, gameBoard){
-    //advanceGame()
-},
-
-continueGame: true,
-
-}
-const player = {name:"name", symbol:"0", score:0};
-*/
-// Player factory
 const PlayerFactory = (name, element) => {
     let score = 0;
     const symbol = element;
@@ -46,19 +8,49 @@ const PlayerFactory = (name, element) => {
     const setScore = () => score += 1;
     const sayHello = () => console.log(`Hello, my name is ${name}`)
 
-    return {getName, getSymbol, getScore, setScore, sayHello}
+    return {
+        getName,
+        getSymbol,
+        getScore,
+        setScore,
+        sayHello
+    }
 }
 
 // gameBoard module
 const gameBoardModule = (() => {
-    const board = [null, null, null, null, null, null, null, null, null]
+    let board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     const getBoard = () => board;
+    const resetBoard = () => board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     const makeMove = (index, symbol) => {
-        const board = gameBoardModule.getBoard()
-        board[index]= symbol;
+        if (board[index] !== 0) {
+            console.log('You can only play in empty cells, please chose an empty one')
+        } else {
+            const board = gameBoardModule.getBoard()
+            board[index]= symbol;
+        }
+
         return board;
     };
-    const checkWin = (board) => {
+    const checkWin = (symbol) => {
+        const boardString = board.join('');
+        const colRegexp = new RegExp(`${symbol}..${symbol}..${symbol}`);
+        const dia1Regexp = new RegExp(`${symbol}...${symbol}...${symbol}`);
+        const dia2Regexp = new RegExp(`..${symbol}.${symbol}.${symbol}..`);
+        const rowRegexp = [new RegExp(`${symbol}${symbol}${symbol}......`),
+                           new RegExp(`...${symbol}${symbol}${symbol}...`),
+                           new RegExp(`......${symbol}${symbol}${symbol}`)];
+        if (boardString.match(colRegexp)) {
+            console.log(`Column win with ${symbol}!`);
+            return true;
+        } else if (boardString.match(dia1Regexp) || boardString.match(dia2Regexp)) {
+            console.log(`Diagonal win with ${symbol}!`);
+            return true;
+        } else if (
+            boardString.match(rowRegexp[0]) || boardString.match(rowRegexp[1]) || boardString.match(rowRegexp[2])) {
+            console.log(`Row win with ${symbol}!`);
+            return true;
+        }
         return false;
     };
     const checkTie = (board) => {
@@ -70,6 +62,7 @@ const gameBoardModule = (() => {
         makeMove,
         checkWin,
         checkTie,
+        resetBoard,
     }
 })();
 
@@ -97,38 +90,78 @@ const gameModule = (() => {
     const getBoard = () => board;
     const advanceGame = () => {
         if (!continueGame) { return false }
-        const winner = board.checkWin()
+            const symbol = players[currentPlayer].getSymbol()
+            const winner = board.checkWin(symbol)
         if (!winner && !board.checkTie()) {
             incrementTurn();
             setCurrentPlayer();
+            console.log(`It's ${players[currentPlayer].getName()}'s turn to play!`)
         } else {
             // set winner and loses and player score
             continueGame = false;
             if(winner) { 
             // get last player to play current turn
                 const playerIndex = turn % 2;
-                players[playerIndex].setScore;
-                console.log(`${players[playerIndex].name} won!`);
+                players[playerIndex].setScore();
+                console.log(`${players[playerIndex].getName()} won!`);
             } else {
                 console.log('This game is a tie!');
             }
         } 
     }
     const startGame = (player1, player2) => {
+        console.log(`
+- --------====+* GAME STARTED *+====---------- -
+        `)
         setPlayers(PlayerFactory(player1, 'o'), PlayerFactory(player2, 'x'));
         advanceGame(); 
     };
 
     const makeMove = (index) => {
-        if(turn > -1){
+        if(turn > -1 && continueGame){
             console.log(board.makeMove(index, players[currentPlayer].getSymbol()))
             advanceGame(); 
-    }   else {
+        } else if (continueGame) {
             console.log('The game did not start yet!')
-    }
+        } else {
+            console.log('The game is already over and no replay feature was implemented yet :-(')
+        }
     }
 
-    return {getTurn, incrementTurn, getCurrentPlayer, setCurrentPlayer,
-    getPlayers, setPlayers, getBoard, advanceGame, startGame, makeMove}
+    const playAgain = () => {
+        turn = -1;
+        currentPlayer = 0;
+        board.resetBoard();
+        console.log(`
+Player score:
+        ${players[0].getName()}: ${players[0].getScore()}
+        ${players[1].getName()}: ${players[1].getScore()}
+        `)
+        console.log(`
+- --------====+* GAME (RE)STARTED *+====---------- -
+        `)
+        advanceGame(); 
+    }
+
+    const resetGame = () => {
+        turn = -1;
+        currentPlayer = 0;
+        board.resetBoard();
+    }
+
+    return {
+        getTurn, 
+        incrementTurn, 
+        getCurrentPlayer, 
+        setCurrentPlayer,
+        getPlayers, 
+        setPlayers, 
+        getBoard, 
+        advanceGame, 
+        startGame, 
+        resetGame, 
+        playAgain,
+        makeMove,
+    }
 })()
 

@@ -1,3 +1,4 @@
+/*
 const gameBoard = { board:[ null, x, o,
                            o, X, null,
                           null, x, null], makeMove: function() { 
@@ -38,4 +39,16 @@ continueGame: true,
 
 }
 const player = {name:"name", symbol:"0", score:0};
+*/
+// Player factory
+const Player = (name, symbol) => {
+    let score = 0;
+    const getScore = () => score;
+    const getName = () => name;
+    const getSymbol = () => symbol;
 
+    const setScore = () => score += 1;
+    const sayHello = () => console.log(`Hello, my name is ${name}`)
+
+    return {getName, getSymbol, getScore, setScore, sayHello}
+}

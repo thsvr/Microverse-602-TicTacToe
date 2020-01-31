@@ -1,9 +1,4 @@
 /*
-const gameBoard = { board:[ null, x, o,
-                           o, X, null,
-                          null, x, null], makeMove: function() { 
-                              // this function going to change the value of a board cell
-                            }  };
 
 const game = {checkWin: function() {
     //all the possibilities of some player win the game
@@ -41,7 +36,7 @@ continueGame: true,
 const player = {name:"name", symbol:"0", score:0};
 */
 // Player factory
-const Player = (name, symbol) => {
+const PlayerFactory = (name, symbol) => {
     let score = 0;
     const getScore = () => score;
     const getName = () => name;
@@ -54,9 +49,11 @@ const Player = (name, symbol) => {
 }
 
 // gameBoard module
-const gameBoard = (() => {
-    const board = () => [null, null, null, null, null, null, null, null, null];
-    const makeMove = (board, index, symbol) => {
+const gameBoardModule = (() => {
+    const board = [null, null, null, null, null, null, null, null, null]
+    const getBoard = () => board;
+    const makeMove = (index, symbol) => {
+        const board = gameBoard.getBoard()
         board[index]= symbol;
         return board;
     };
@@ -68,10 +65,49 @@ const gameBoard = (() => {
     };
 
     return {
-        board,
+        getBoard,
         makeMove,
         checkWin,
         checkTie,
     }
-
 })();
+
+const gameModule = (() => {
+    const turn = 0;
+    const currentPlayer = 0;
+    const players = [];
+    const board = gameBoardModule;
+    const continueGame = true;
+
+    const getTurn = () => turn;
+    const incrementTurn = () => turn += 1;
+    const getCurrentPlayer = () => currentPlayer;
+    const setCurrentPlayer = () => {
+        if (turn % 2 === 0) {
+            currentPlayer = 0
+        } else {
+            currentPlayer = 1
+        }
+    };
+    const getPlayers = () => players;
+    const setPlayers = (player1, player2) => {
+        players.push(player1, player2);
+    };
+    const getBoard = () => board;
+    const advanceGame = () => {
+        if (!continueGame) { return false }
+
+        if (!board.checkWin() && !board.checkTie()) {
+            incrementTurn();
+            setCurrentPlayer();
+        } else {
+            // set winner and loses and player score
+            continueGame = false;
+            // get last player to play current turn
+            const playerIndex = turn % 2;
+            players[playerIndex].setScore;
+        } 
+    }
+
+    return {}
+})()

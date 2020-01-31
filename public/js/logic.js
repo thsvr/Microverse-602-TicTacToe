@@ -36,8 +36,9 @@ continueGame: true,
 const player = {name:"name", symbol:"0", score:0};
 */
 // Player factory
-const PlayerFactory = (name, symbol) => {
+const PlayerFactory = (name, element) => {
     let score = 0;
+    const symbol = element;
     const getScore = () => score;
     const getName = () => name;
     const getSymbol = () => symbol;
@@ -53,7 +54,7 @@ const gameBoardModule = (() => {
     const board = [null, null, null, null, null, null, null, null, null]
     const getBoard = () => board;
     const makeMove = (index, symbol) => {
-        const board = gameBoard.getBoard()
+        const board = gameBoardModule.getBoard()
         board[index]= symbol;
         return board;
     };
@@ -73,11 +74,11 @@ const gameBoardModule = (() => {
 })();
 
 const gameModule = (() => {
-    const turn = 0;
-    const currentPlayer = 0;
+    let turn = -1;
+    let currentPlayer = 0;
     const players = [];
     const board = gameBoardModule;
-    const continueGame = true;
+    let continueGame = true;
 
     const getTurn = () => turn;
     const incrementTurn = () => turn += 1;
@@ -96,18 +97,38 @@ const gameModule = (() => {
     const getBoard = () => board;
     const advanceGame = () => {
         if (!continueGame) { return false }
-
-        if (!board.checkWin() && !board.checkTie()) {
+        const winner = board.checkWin()
+        if (!winner && !board.checkTie()) {
             incrementTurn();
             setCurrentPlayer();
         } else {
             // set winner and loses and player score
             continueGame = false;
+            if(winner) { 
             // get last player to play current turn
-            const playerIndex = turn % 2;
-            players[playerIndex].setScore;
+                const playerIndex = turn % 2;
+                players[playerIndex].setScore;
+                console.log(`${players[playerIndex].name} won!`);
+            } else {
+                console.log('This game is a tie!');
+            }
         } 
     }
+    const startGame = (player1, player2) => {
+        setPlayers(PlayerFactory(player1, 'o'), PlayerFactory(player2, 'x'));
+        advanceGame(); 
+    };
 
-    return {}
+    const makeMove = (index) => {
+        if(turn > -1){
+            console.log(board.makeMove(index, players[currentPlayer].getSymbol()))
+            advanceGame(); 
+    }   else {
+            console.log('The game did not start yet!')
+    }
+    }
+
+    return {getTurn, incrementTurn, getCurrentPlayer, setCurrentPlayer,
+    getPlayers, setPlayers, getBoard, advanceGame, startGame, makeMove}
 })()
+

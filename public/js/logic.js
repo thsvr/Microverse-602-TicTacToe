@@ -95,7 +95,8 @@ const gameModule = (() => {
         if (!winner && !board.checkTie()) {
             incrementTurn();
             setCurrentPlayer();
-            console.log(`It's ${players[currentPlayer].getName()}'s turn to play!`)
+            console.log(`It's ${players[currentPlayer].getName()}'s turn to play!`);
+            return false;
         } else {
             // set winner and loses and player score
             continueGame = false;
@@ -104,25 +105,28 @@ const gameModule = (() => {
                 const playerIndex = turn % 2;
                 players[playerIndex].setScore();
                 console.log(`${players[playerIndex].getName()} won!`);
+                return 'WIN';
             } else {
                 console.log('This game is a tie!');
             }
         } 
     }
     const startGame = (player1, player2) => {
-        console.log(`
+        if (turn === -1) {
+            console.log(`
 - --------====+* GAME STARTED *+====---------- -
         `)
-        setPlayers(PlayerFactory(player1, 'o'), PlayerFactory(player2, 'x'));
-        advanceGame(); 
+            setPlayers(PlayerFactory(player1, 'o'), PlayerFactory(player2, 'x'));
+            advanceGame(); 
+        }
     };
 
     const makeMove = (index) => {
         if(turn > -1 && continueGame){
             console.log(board.makeMove(index, players[currentPlayer].getSymbol()))
             let symbol = players[currentPlayer].getSymbol()
-            advanceGame(); 
-            return symbol;
+            let result = advanceGame(); 
+            return [symbol, result];
         } else if (continueGame) {
             console.log('The game did not start yet!')
         } else {

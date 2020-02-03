@@ -11,10 +11,36 @@
 
 <body>
   <h1>Tic-Tac-Toe</h1>
-  <button type="button" onclick="gameModule.startGame('player1', 'player2')"> Start the game</button>
+  <form onsubmit="return false">
+    <h3>Chose the players names</h3>
+    <label>
+      Player 1
+      <input name='player1' type="text" required>
+    </label>
+    <label>
+      Player 2
+      <input name='player2' type="text" required>
+    </label>
+    <button type="submit" onclick="startGame(this)"> Start the game</button>
+  </form onsubmit="startGame(this)">
   <button type="button" onclick="playAgain()"> Play again</button>
   <button type="button" onclick="resetGame()"> Reset Game</button>
 
+  <div id='players-display'>
+    <div>
+      <h3>Player O</h3>
+      <p class='name'>____</p class='name'>
+    </div>
+    <div>
+      <h3>Player X</h3>
+      <p class='name'>____</p>
+    </div>
+    <div id='scores'>
+      <p class="score"><strong>Score</strong></p>
+      <p class="player-score">0</p class="player-score">
+      <p class="player-score">0</p>
+    </div>
+  </div>
   <div class='game-board'>
     <ul>
       <li class="cell" id="0"></li>

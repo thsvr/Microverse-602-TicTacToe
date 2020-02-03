@@ -7,3 +7,38 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
+
+#players-display {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border: 1px solid #000;
+}
+
+.name {
+    background-color: rgb(3, 14, 0);
+    color: #fff;
+    box-sizing: border-box;
+    padding: 20px;
+    font-weight: 900;
+}
+
+#scores {
+    grid-column: 1/-1;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.score {
+    justify-self: center;
+    grid-column: 1/-1;
+}
+
+.player-score {
+    background-color: rgb(3, 14, 0);
+    color: #fff;
+    justify-self: center;
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
+}

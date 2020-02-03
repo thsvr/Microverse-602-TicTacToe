@@ -3,7 +3,10 @@ const cells = document.getElementsByClassName("cell");
 const print = (element) => {
     element.addEventListener("click", (event) => {
         console.log(element.innerText)
-        element.innerText = gameModule.makeMove(element.id)      
+        let symbol = gameModule.makeMove(element.id) 
+        if(symbol) {
+           element.innerText = symbol 
+        }     
     })  
 }
 

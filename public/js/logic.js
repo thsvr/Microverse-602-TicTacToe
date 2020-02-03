@@ -128,6 +128,7 @@ const gameModule = (() => {
         } else {
             console.log('The game is already over and no replay feature was implemented yet :-(')
         }
+        return false;
     }
 
     const playAgain = () => {

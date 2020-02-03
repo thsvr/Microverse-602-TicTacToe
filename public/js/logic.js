@@ -69,7 +69,7 @@ const gameBoardModule = (() => {
 const gameModule = (() => {
     let turn = -1;
     let currentPlayer = 0;
-    const players = [];
+    let players = [];
     const board = gameBoardModule;
     let continueGame = true;
 
@@ -120,7 +120,9 @@ const gameModule = (() => {
     const makeMove = (index) => {
         if(turn > -1 && continueGame){
             console.log(board.makeMove(index, players[currentPlayer].getSymbol()))
+            let symbol = players[currentPlayer].getSymbol()
             advanceGame(); 
+            return symbol;
         } else if (continueGame) {
             console.log('The game did not start yet!')
         } else {
@@ -129,9 +131,13 @@ const gameModule = (() => {
     }
 
     const playAgain = () => {
+        if(continueGame) {
+            return 
+        }
         turn = -1;
         currentPlayer = 0;
         board.resetBoard();
+        continueGame = true;
         console.log(`
 Player score:
         ${players[0].getName()}: ${players[0].getScore()}
@@ -141,12 +147,16 @@ Player score:
 - --------====+* GAME (RE)STARTED *+====---------- -
         `)
         advanceGame(); 
+        return 'CLEAN BOARD'
     }
 
     const resetGame = () => {
+        players = [];
         turn = -1;
         currentPlayer = 0;
         board.resetBoard();
+        continueGame = true;
+        return 'CLEAN BOARD'
     }
 
     return {

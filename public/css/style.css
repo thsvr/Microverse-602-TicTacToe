@@ -1,11 +1,19 @@
 .cell {
     cursor: pointer;
     border: 1px solid black;
+    list-style: none;
+    min-width: 50px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
 }
 
 .game-board ul {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 50px);
+    grid-auto-rows: 50px;
 }
 
 #players-display {

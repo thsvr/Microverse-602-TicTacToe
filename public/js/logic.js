@@ -53,8 +53,8 @@ const gameBoardModule = (() => {
         }
         return false;
     };
-    const checkTie = (board) => {
-        return false;
+    const checkTie = () => {
+        return !board.some(n => n === 0)
     };
 
     return {
@@ -108,6 +108,7 @@ const gameModule = (() => {
                 return 'WIN';
             } else {
                 console.log('This game is a tie!');
+                return 'TIE'
             }
         } 
     }

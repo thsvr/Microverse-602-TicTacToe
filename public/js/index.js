@@ -4,6 +4,7 @@ const print = (element) => {
     element.addEventListener("click", (event) => {
         let symbol = gameModule.makeMove(element.id) 
         if(symbol) {
+           console.log(symbol)
            element.innerText = symbol[0]
 
            if (symbol[1] === 'WIN') {

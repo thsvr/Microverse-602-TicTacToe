@@ -6,26 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="public/css/style.css">
+  <script src="https://kit.fontawesome.com/bc4d064067.js" crossorigin="anonymous"></script>
   <title>Tic Tac Toe</title>
 </head>
 
 <body>
-  <h1>Tic-Tac-Toe</h1>
-  <form onsubmit="return false">
-    <h3>Chose the players names</h3>
-    <label>
-      Player 1
-      <input name='player1' type="text" required>
-    </label>
-    <label>
-      Player 2
-      <input name='player2' type="text" required>
-    </label>
-    <button type="submit" onclick="startGame(this)"> Start the game</button>
-  </form onsubmit="startGame(this)">
-  <button type="button" onclick="playAgain()"> Play again</button>
-  <button type="button" onclick="resetGame()"> Reset Game</button>
-
+  <section class='game'>
+  <header>
+    <h1>Tic-Tac-Toe
+    </h1>
+    <img class='logo' src="./public/img/logo.svg" alt="">
+  </header>
   <div id='players-display'>
     <div>
       <h3>Player O</h3>
@@ -43,6 +34,25 @@
   </div>
   <div class='game-board'>
     <ul>
+      <li class='play-again hidden'>
+        <button type="button" onclick="playAgain()"> Play again</button>
+      </li>
+      <li class='start-game'>
+        <form onsubmit="return false">
+          <h3>Chose the players names</h3>
+          <div class='player-inputs'>
+            <label>
+              Player 1
+              <input name='player1' type="text" required>
+            </label>
+            <label>
+              Player 2
+              <input name='player2' type="text" required>
+            </label>
+          </div>
+          <button type="submit" onclick="startGame(this)"> Start the game</button>
+        </form onsubmit="startGame(this)">
+      </li class='play-again hidden'>
       <li class="cell" id="0"></li>
       <li class="cell" id="1"></li>
       <li class="cell" id="2"></li>
@@ -54,6 +64,17 @@
       <li class="cell" id="8"></li>
     </ul>
   </div>
+  <button type="button" onclick="resetGame()"> Reset Game</button>
+
+  </section>
+  <footer class="footer">
+    2020 - by <a href='https://github.com/uryelah'><i class="fab fa-github"></i>
+      uryelah</a> &
+      <a href='https://github.com/thsvr'><i class="fab fa-github"></i>
+        thsvr</a>
+        Icons made with: 
+      <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+  </footer>
   <script src="public/js/index.js"></script>
   <script src="public/js/logic.js"></script>
 </body>

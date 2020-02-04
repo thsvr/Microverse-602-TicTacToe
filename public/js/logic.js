@@ -24,7 +24,7 @@ const gameBoardModule = (() => {
     const resetBoard = () => board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     const makeMove = (index, symbol) => {
         if (board[index] !== 0) {
-            console.log('You can only play in empty cells, please chose an empty one')
+            return false
         } else {
             const board = gameBoardModule.getBoard()
             board[index]= symbol;
@@ -124,10 +124,14 @@ const gameModule = (() => {
 
     const makeMove = (index) => {
         if(turn > -1 && continueGame){
-            console.log(board.makeMove(index, players[currentPlayer].getSymbol()))
-            let symbol = players[currentPlayer].getSymbol()
-            let result = advanceGame(); 
-            return [symbol, result];
+            const move = board.makeMove(index, players[currentPlayer].getSymbol());
+            if (!move) {
+              false
+            } else {
+              let symbol = players[currentPlayer].getSymbol();
+              let result = advanceGame(); 
+              return [symbol, result];
+            }
         } else if (continueGame) {
             console.log('The game did not start yet!')
         } else {

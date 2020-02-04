@@ -19,38 +19,38 @@
   </header>
   <div id='players-display'>
     <div>
-      <h3>Player O</h3>
-      <p class='name'>____</p>
+      <h3><span class='name-a'>Player O</span></h3>
+      <p class='name name-a'>____</p>
     </div>
     <div>
-      <h3>Player X</h3>
-      <p class='name'>____</p>
+      <h3><span class='name-b'>Player X</span></h3>
+      <p class='name name-b'>____</p>
     </div>
     <div id='scores'>
       <p class="score"><strong>Score</strong></p>
-      <p class="player-score">0</p>
-      <p class="player-score">0</p>
+      <p class="player-score score-a">0</p>
+      <p class="player-score score-b">0</p>
     </div>
   </div>
   <div class='game-board'>
     <ul>
       <li class='play-again hidden'>
-        <button type="button" onclick="playAgain()"> Play again</button>
+        <button class="tic-btn" type="button" onclick="playAgain()"> Play again</button>
       </li>
       <li class='start-game'>
         <form onsubmit="return false">
           <h3>Chose the players names</h3>
           <div class='player-inputs'>
             <label>
-              Player 1
+              Player 1:
               <input name='player1' type="text" required>
             </label>
             <label>
-              Player 2
+              Player 2:
               <input name='player2' type="text" required>
             </label>
           </div>
-          <button type="submit" onclick="startGame(this)"> Start the game</button>
+          <button class="tic-btn" type="submit" onclick="startGame(this)"> Start the game</button>
         </form onsubmit="startGame(this)">
       </li class='play-again hidden'>
       <li class="cell" id="0"></li>
@@ -64,7 +64,7 @@
       <li class="cell" id="8"></li>
     </ul>
   </div>
-  <button type="button" onclick="resetGame()"> Reset Game</button>
+  <button class="tic-btn reset-btn" type="button" onclick="resetGame()"> Reset Game</button>
 
   </section>
   <footer class="footer">
@@ -73,7 +73,7 @@
       <a href='https://github.com/thsvr'><i class="fab fa-github"></i>
         thsvr</a>
         Icons made with: 
-      <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+      <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
   </footer>
   <script src="public/js/index.js"></script>
   <script src="public/js/logic.js"></script>

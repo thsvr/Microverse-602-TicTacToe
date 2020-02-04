@@ -1,50 +1,73 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,400,900&display=swap');
 
 body {
-  background-color: lightgray;
+  --orange: #fa5d0f;
+  --yellow: #ffda00;
+  --teal: #06ccab;
+  --white: #fff;
+  --clear-teal: #06ccabaa;
+  --cristal-teal: #06ccab33;
+  --dark-teal: #333940;
+  --darker-teal: #23272b;
+  --darkest-teal: #1a1e22;
+  background-color: var(--dark-teal);
   display: flex;
   justify-content: center;
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
+  padding-top: 50px;
 }
 
 .game {
-  background: #fff;
+  background: var(--cristal-teal);
+  border: 10px solid var(--darker-teal);
   box-sizing: border-box;
   padding: 50px;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: 1fr 200px;
-  margin-bottom: 50px;
+  grid-template-columns: 1fr minMax(200px, 250px);
+  row-gap: 10px;
+  margin-bottom: 30px;
 }
 
 header {
   grid-column: 1/-1;
   display: flex;
   justify-content: center;
+  font-size: 2rem;
+  color: var(--darkest-teal);
+  text-shadow: 1px 1px 0 var(--teal), -1px -1px 0 var(--teal), -1px 1px 0 var(--teal), 1px -1px 0 var(--teal);
+  border-bottom: 2px solid var(--teal);
+}
+
+header h1 {
+  margin: 0;
+  margin-bottom: 30px;
 }
 
 .logo {
   width: 40px;
-  margin: 10px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+  filter: drop-shadow(1px 1px 0 var(--yellow)) drop-shadow(-1px -1px 0 var(--yellow)) drop-shadow(-1px 1px 0 var(--yellow)) drop-shadow(1px -1px 0 var(--yellow))
 }
 
 .cell {
-    cursor: pointer;
-    border: 1px solid lightgray;
-    list-style: none;
-    min-width: 50px;
-    min-height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
+  cursor: pointer;
+  border: 1px solid lightgray;
+  list-style: none;
+  min-width: 50px;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
 }
 
 .game-board {
   grid-column: 1;
   grid-row: 2;
-  margin-right: 50px;
+  margin-right: 30px;
 }
 
 .player-inputs {
@@ -59,26 +82,28 @@ header {
 }
 
 .game-board ul {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-auto-rows: 100px;
-    position: relative;
-    width: 300px;
-    padding-left: 0;
-    box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-auto-rows: 100px;
+  position: relative;
+  width: 300px;
+  padding-left: 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .play-again, .start-game {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color:rgba(0, 0, 255, 0.479);
-    top: 0;
-    left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color:var(--clear-teal);
+  top: 0;
+  left: 0;
 }
 
 .start-game form {
@@ -91,48 +116,157 @@ header {
 }
 
 #players-display {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border: 1px solid #000;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid var(--teal);
+  border-radius: 5px;
+  height: 300px;
+  margin-top: 15px;
+  overflow: hidden;
+  color: var(--teal);
 }
 
-.name {
-    background-color: rgb(3, 14, 0);
-    color: #fff;
-    box-sizing: border-box;
-    padding: 20px;
-    font-weight: 900;
+#players-display div {
+  text-align: center;
+}
+
+#players-display p {
+  margin: 0;
 }
 
 #scores {
-    grid-column: 1/-1;
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(2, 1fr);
+  grid-column: 1/-1;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .score {
-    justify-self: center;
-    grid-column: 1/-1;
+  justify-self: center;
+  grid-column: 1/-1;
+  font-size: 1.5rem;
+}
+
+.name {
+  background-color: var(--darkest-teal);
+  color: #fff;
+  box-sizing: border-box;
+  padding: 20px;
+  padding-bottom: 35px;
+  font-weight: 900;
+  color: var(--orange);
+  height: 99px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-decoration: underline var(--orange);
+}
+
+.name-a {
+  color: var(--orange);
+}
+
+span.name-a {
+  color: inherit;
+  border-bottom: 1px solid var(--orange);
+}
+
+.name-b {
+  color: var(--yellow);
+}
+
+span.name-b {
+  color: inherit;
+  border-bottom: 1px solid var(--yellow);
 }
 
 .player-score {
-    background-color: rgb(3, 14, 0);
-    color: #fff;
-    justify-self: center;
-    box-sizing: border-box;
-    padding: 20px;
-    width: 100%;
+  background-color: var(--darkest-teal);
+  color: #fff;
+  justify-self: center;
+  box-sizing: border-box;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.score-a {
+  color: var(--orange);
+}
+
+.score-b {
+  color: var(--yellow);
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .footer {
   width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
   position: fixed;
   bottom: 0;
   left: 0;
-  background-color: #0a1531;
+  background-color: var(--darker-teal);
+  color: #06ccab;
+  font-weight: 100;
+  text-align: center;
+}
+
+.footer a {
+  color: #06ccab;
+  margin: 0 10px;
+}
+
+.tic-btn {
+  box-sizing: border-box;
+  padding: 20px 30px;
+  border: none;
+  box-shadow: none;
+  background: var(--darker-teal) !important;
+  border: 2px solid var(--yellow);
+  border-radius: 10px;
+  color: var(--yellow);
+  cursor: pointer;
+  transition: 0.3s ease-in;
+  font-weight: 900;
+  font-size: 1.3rem;
+}
+
+.tic-btn:hover {
+  box-shadow: inset 0 0 0 50px var(--yellow);
+  color: var(--darkest-0teal);
+}
+
+.reset-btn {
+  font-size: 0.8rem;
+  padding: 10px 20px;
+  color: var(--teal);
+  border: none;
+  border-color: transparent;
+  grid-column: 2;
+  font-weight: 400;
+  margin-top: -20px;
+  border-radius: 2px;
+}
+
+.reset-btn:hover {
+  box-shadow: inset 0 0 0 50px var(--orange);
+}
+
+a:hover {
+  transition: 0.3s ease-in;
+  color: var(--yellow);
+}
+
+input {
+  border-radius: 3px;
+  border: none;
+  background-color: #ffffffcc;
+  box-sizing: border-box;
 }

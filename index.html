@@ -23,7 +23,6 @@
     </label>
     <button type="submit" onclick="startGame(this)"> Start the game</button>
   </form onsubmit="startGame(this)">
-  <button type="button" onclick="playAgain()"> Play again</button>
   <button type="button" onclick="resetGame()"> Reset Game</button>
 
   <div id='players-display'>
@@ -43,6 +42,9 @@
   </div>
   <div class='game-board'>
     <ul>
+      <li class='play-again'>
+        <button type="button" onclick="playAgain()"> Play again</button>
+      </li>
       <li class="cell" id="0"></li>
       <li class="cell" id="1"></li>
       <li class="cell" id="2"></li>

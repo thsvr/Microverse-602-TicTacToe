@@ -105,7 +105,7 @@ const gameModule = (() => {
                 const playerIndex = turn % 2;
                 players[playerIndex].setScore();
                 console.log(`${players[playerIndex].getName()} won!`);
-                return 'WIN';
+                return ['WIN', playerIndex, players[playerIndex].getScore()];
             } else {
                 console.log('This game is a tie!');
                 return 'TIE'

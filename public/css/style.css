@@ -61,7 +61,7 @@ header h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 4rem;
 }
 
 .game-board {
@@ -128,6 +128,10 @@ header h1 {
 
 #players-display div {
   text-align: center;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 #players-display p {
@@ -158,14 +162,17 @@ header h1 {
   height: 99px;
   font-size: 1.2rem;
   font-weight: 400;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  text-decoration: underline var(--orange);
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  padding-top: 35px;
+  margin: 0 auto;
 }
 
 .name-a {
   color: var(--orange);
+  text-decoration: underline var(--orange);
 }
 
 span.name-a {
@@ -175,11 +182,12 @@ span.name-a {
 
 .name-b {
   color: var(--yellow);
+  text-decoration: underline var(--yellow);
 }
 
 span.name-b {
   color: inherit;
-  border-bottom: 1px solid var(--yellow);
+  border-bottom: 1px solid var(--yellow)!important;
 }
 
 .player-score {
@@ -269,4 +277,19 @@ input {
   border: none;
   background-color: #ffffffcc;
   box-sizing: border-box;
+}
+
+.x {
+    color: var(--yellow);
+    text-shadow: 1px 1px 3px var(--darkest-teal);
+}
+
+.o {
+    color: var(--orange);
+    text-shadow: 1px 1px 3px var(--darkest-teal);
+}
+
+.msg {
+    font-size: 1.7rem;
+    text-align: center;
 }

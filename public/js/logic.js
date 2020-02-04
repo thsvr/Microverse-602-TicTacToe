@@ -51,10 +51,7 @@ const gameBoardModule = (() => {
     }
     return false;
   };
-  const checkTie = () => {
-    const result = !board.some((n) => n === 0);
-    return result;
-  };
+  const checkTie = () => !board.some(n => n === 0);
 
   return {
     getBoard,

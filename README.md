@@ -11,7 +11,7 @@
   </a>
 
   <h3 align="center">Tic Tac Toe -
-  <a href='https://raw.githack.com/thsvr/Microverse-602-TicTacToe/library/index.html'> Live version IN PROGRESS</a></h3>
+  <a href='https://raw.githack.com/thsvr/Microverse-602-TicTacToe/tictactoe/index.html'> Live version</a></h3>
 
   <p align="center">
     This project is part of the Microverse Javacript Section!
@@ -34,11 +34,12 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-A Tic Tac Toe game you can play in your browser made with vanila Javascript, HTML, and CSS3.
+A Tic Tac Toe game you can play in your browser made with vanila Javascript, HTML, and CSS3. 
+
+Tic-tac-toe is game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner. [Wikipedia reference](https://en.wikipedia.org/wiki/Tic-tac-toe)
 
 <div align="center">
-  <img src="img/.png" width="500">
-  <img src="img/.png" alt="Logo" width="300">
+  <img src="public/img/screenshot.png" width="800">
 </div>
 
 <!-- ABOUT THE PROJECT -->

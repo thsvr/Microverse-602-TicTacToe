@@ -162,3 +162,5 @@ const gameModule = (() => {
   };
 })();
 // eslint-enable-next-line no-unused-vars
+
+export { gameModule, PlayerFactory};

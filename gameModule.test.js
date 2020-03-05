@@ -153,7 +153,59 @@ const {getTurn,
       incrementTurn();
       expect(getTurn()-previousTurn).toBe(1);
     });
-
   });
+
+  describe('gameModule getCurrentPlayer', () => {
+    it('does not have any parameter', () => {
+      expect(getCurrentPlayer.length).toBe(0);
+    });
+
+    it('returns a number', () => {
+      expect(typeof getCurrentPlayer()).toBe('number');
+    });
+
+    it('returns a integer', () => {
+      expect(Number.isInteger(getCurrentPlayer())).toBe(true);
+    });
+  });
+
+  describe('gameModule setCurrentPlayer', () => {
+    it('does not have any parameter', () => {
+      expect(setCurrentPlayer.length).toBe(0);
+    });
+
+    it('does not have a returning value', () => {
+      expect(setCurrentPlayer()).toBe(undefined);
+    });
+
+    it('changes the value of the currentPlayer based on the turn value', () => {
+      const player = getCurrentPlayer();
+      incrementTurn();
+      setCurrentPlayer();
+      expect(getCurrentPlayer()).not.toBe(player);      
+    });
+
+    it('toggles the value of the currentPlayer according if the turn is even or odd', () => {
+      const player = getCurrentPlayer();
+      incrementTurn();
+      setCurrentPlayer();
+      incrementTurn();
+      setCurrentPlayer();
+      expect(getCurrentPlayer()).toBe(player);      
+    });
+
+    it('can only change the value of the currentPlayer to 0 or 1', () => {
+      const arr = [getCurrentPlayer()];
+      for (let i = 0; i <= 10; i += 1){
+        incrementTurn();
+        setCurrentPlayer();
+        arr.push(getCurrentPlayer());
+      }
+      const result = arr.every((player) => [0,1].includes(player));
+      expect(result).toBe(true);
+    });
+  });
+
+  
 
   

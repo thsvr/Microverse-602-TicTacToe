@@ -24,7 +24,7 @@ const gameBoardModule = (() => {
     board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   }
   const makeMove = (index, symbol) => {
-    if (board[index] !== 0) {
+    if (board[index] !== 0 || !symbol) {
       return false;
     }
     const thisBoard = gameBoardModule.getBoard();
@@ -163,4 +163,4 @@ const gameModule = (() => {
 })();
 // eslint-enable-next-line no-unused-vars
 
-export { gameModule, PlayerFactory};
+export { gameModule, PlayerFactory, gameBoardModule};

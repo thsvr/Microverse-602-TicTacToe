@@ -16,6 +16,25 @@ const { getTurn,
   cleanGame,
   makeMove } = gameModule;
 
+const setPlayerHelper = () => {
+  incrementTurn();
+  setCurrentPlayer();
+}
+
+const gameTieHelper = () => {
+  resetGame();
+  startGame(player1, player2);
+  makeMove(0);
+  makeMove(1);
+  makeMove(4);
+  makeMove(2);
+  makeMove(5);
+  makeMove(3);
+  makeMove(6);
+  makeMove(8);
+  makeMove(7);
+}
+
 it('is an object', () => {
   expect(typeof gameModule).toBe('object');
 });
@@ -175,25 +194,21 @@ describe('gameModule setCurrentPlayer', () => {
 
   it('changes the value of the currentPlayer based on the turn value', () => {
     const player = getCurrentPlayer();
-    incrementTurn();
-    setCurrentPlayer();
+    setPlayerHelper();
     expect(getCurrentPlayer()).not.toBe(player);
   });
 
   it('toggles the value of the currentPlayer according if the turn is even or odd', () => {
     const player = getCurrentPlayer();
-    incrementTurn();
-    setCurrentPlayer();
-    incrementTurn();
-    setCurrentPlayer();
+    setPlayerHelper();
+    setPlayerHelper();
     expect(getCurrentPlayer()).toBe(player);
   });
 
   it('can only change the value of the currentPlayer to 0 or 1', () => {
     const arr = [getCurrentPlayer()];
     for (let i = 0; i <= 10; i += 1) {
-      incrementTurn();
-      setCurrentPlayer();
+      setPlayerHelper();
       arr.push(getCurrentPlayer());
     }
     const result = arr.every((player) => [0, 1].includes(player));
@@ -249,34 +264,15 @@ describe('gameModule makeMove', () => {
   });
 
   it('it returns false if the game is tied over', () => {
-    resetGame();
-    startGame(player1, player2);
-    makeMove(0);
-    makeMove(1);
-    makeMove(4);
-    makeMove(2);
-    makeMove(5);
-    makeMove(3);
-    makeMove(6);
-    makeMove(8);
-    makeMove(7);
+    gameTieHelper();
 
     expect(makeMove(6)).toBe(false);
   });
-  resetGame();
+  
 });
 
 describe('gameModule playAgain', () => {
-  startGame(player1, player2);
-  makeMove(0);
-  makeMove(1);
-  makeMove(4);
-  makeMove(2);
-  makeMove(5);
-  makeMove(3);
-  makeMove(6);
-  makeMove(8);
-  makeMove(7);
+  gameTieHelper();
 
   it('takes 0 parameters', () => {
     expect(playAgain.length).toBe(0);
@@ -289,55 +285,25 @@ describe('gameModule playAgain', () => {
   it('returns the null if game is not over', () => {
     expect(playAgain()).toBe(null);
   });
-  resetGame();
 });
 
 describe('gameModule cleanGame', () => {
   it('resets the turn number to -1', () => {
-    startGame(player1, player2);
-    makeMove(0);
-    makeMove(1);
-    makeMove(4);
-    makeMove(2);
-    makeMove(5);
-    makeMove(3);
-    makeMove(6);
-    makeMove(8);
-    makeMove(7);
+    gameTieHelper();
     cleanGame();
 
     expect(getTurn()).toBe(-1);
-    resetGame();
   });
   
   it('resets the currentPlayer to 0', () => {
-    startGame(player1, player2);
-    makeMove(0);
-    makeMove(1);
-    makeMove(4);
-    makeMove(2);
-    makeMove(5);
-    makeMove(3);
-    makeMove(6);
-    makeMove(8);
-    makeMove(7);
+    gameTieHelper();
     cleanGame();
 
     expect(getCurrentPlayer()).toBe(0);
-    resetGame();
   });
 
   it('resets the board to be full of only 0s', () => {
-    startGame(player1, player2);
-    makeMove(0);
-    makeMove(1);
-    makeMove(4);
-    makeMove(2);
-    makeMove(5);
-    makeMove(3);
-    makeMove(6);
-    makeMove(8);
-    makeMove(7);
+    gameTieHelper();
     const prevBoard = getBoard().getBoard().slice().every(n => n === 0);
     cleanGame();
     const newBoard = getBoard().getBoard().every(n => n === 0);

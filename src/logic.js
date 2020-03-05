@@ -97,12 +97,12 @@ const gameModule = (() => {
       return false;
     }
 
-    continueGame = false;
     if (winner) {
       const playerIndex = turn % 2;
       players[playerIndex].setScore();
       return ['WIN', playerIndex, players[playerIndex].getScore()];
     }
+    continueGame = false;
     return 'TIE';
   };
   const startGame = (player1, player2) => {
@@ -125,24 +125,26 @@ const gameModule = (() => {
     return false;
   };
 
+  const cleanGame = () => {
+    turn = -1;
+    currentPlayer = 0;
+    continueGame = true;
+    board.resetBoard();
+  };
+
   const playAgain = () => {
     if (continueGame) {
       return null;
     }
-    turn = -1;
-    currentPlayer = 0;
-    board.resetBoard();
-    continueGame = true;
+
+    cleanGame();
     advanceGame();
     return 'CLEAN BOARD';
   };
 
   const resetGame = () => {
     players = [];
-    turn = -1;
-    currentPlayer = 0;
-    board.resetBoard();
-    continueGame = true;
+    cleanGame();
     return 'CLEAN BOARD';
   };
 
@@ -154,10 +156,10 @@ const gameModule = (() => {
     getPlayers,
     setPlayers,
     getBoard,
-    advanceGame,
     startGame,
     resetGame,
     playAgain,
+    cleanGame,
     makeMove,
   };
 })();

@@ -1,5 +1,6 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-tabs */
+/* eslint-disable import/no-unresolved */
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 

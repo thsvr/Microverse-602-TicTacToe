@@ -1,9 +1,11 @@
-import { gameModule, gameBoardModule, PlayerFactory } from './src/logic';
+/* eslint-disable no-undef */
+import { gameModule } from '../src/logic';
 
 const player1 = 'player1';
 const player2 = 'player2';
 
-const { getTurn,
+const {
+  getTurn,
   incrementTurn,
   getCurrentPlayer,
   setCurrentPlayer,
@@ -14,12 +16,13 @@ const { getTurn,
   resetGame,
   playAgain,
   cleanGame,
-  makeMove } = gameModule;
+  makeMove,
+} = gameModule;
 
 const setPlayerHelper = () => {
   incrementTurn();
   setCurrentPlayer();
-}
+};
 
 const gameTieHelper = () => {
   resetGame();
@@ -33,7 +36,7 @@ const gameTieHelper = () => {
   makeMove(6);
   makeMove(8);
   makeMove(7);
-}
+};
 
 it('is an object', () => {
   expect(typeof gameModule).toBe('object');
@@ -86,7 +89,6 @@ describe('gameModule object has', () => {
 });
 
 describe('gameModule returns an object with propertie which', () => {
-
   it('is a function called getTurn', () => {
     expect(typeof getTurn).toBe('function');
   });
@@ -153,7 +155,6 @@ describe('gameModule getTurn', () => {
 });
 
 describe('gameModule incrementTurn', () => {
-
   it('does not have any parameters', () => {
     expect(incrementTurn.length).toBe(0);
   });
@@ -268,7 +269,6 @@ describe('gameModule makeMove', () => {
 
     expect(makeMove(6)).toBe(false);
   });
-  
 });
 
 describe('gameModule playAgain', () => {
@@ -277,7 +277,7 @@ describe('gameModule playAgain', () => {
   it('takes 0 parameters', () => {
     expect(playAgain.length).toBe(0);
   });
-  
+
   it('returns the string CLEAN BOARD if continueGame is false', () => {
     expect(playAgain()).toBe('CLEAN BOARD');
   });
@@ -294,7 +294,7 @@ describe('gameModule cleanGame', () => {
 
     expect(getTurn()).toBe(-1);
   });
-  
+
   it('resets the currentPlayer to 0', () => {
     gameTieHelper();
     cleanGame();
@@ -304,9 +304,9 @@ describe('gameModule cleanGame', () => {
 
   it('resets the board to be full of only 0s', () => {
     gameTieHelper();
-    const prevBoard = getBoard().getBoard().slice().every(n => n === 0);
+    const prevBoard = getBoard().getBoard().slice().every((n) => n === 0);
     cleanGame();
-    const newBoard = getBoard().getBoard().every(n => n === 0);
+    const newBoard = getBoard().getBoard().every((n) => n === 0);
 
     expect(prevBoard === newBoard).toBe(false);
   });

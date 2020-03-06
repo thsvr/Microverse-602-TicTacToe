@@ -1,7 +1,10 @@
-import { gameBoardModule } from './src/logic';
-import sameContentArr from './test-helpers/index'
+/* eslint-disable no-undef */
+import { gameBoardModule } from '../src/logic';
+import sameContentArr from '../test-helpers/index';
 
-const { getBoard, makeMove, checkWin, checkTie, resetBoard } = gameBoardModule;
+const {
+  getBoard, makeMove, checkWin, checkTie, resetBoard,
+} = gameBoardModule;
 
 it('is an object', () => {
   expect(typeof gameBoardModule).toBe('object');
@@ -53,7 +56,7 @@ describe('gameBoardModule returns an object with propertie which', () => {
 
 describe('gameBoardModule getBoard method', () => {
   it('takes zero argument', () => {
-    expect(getBoard.length).toBe(0)
+    expect(getBoard.length).toBe(0);
   });
 
   it('returns an array', () => {
@@ -77,7 +80,7 @@ describe('gameBoardModule getBoard method', () => {
 
 describe('gameBoardModule makeMove method', () => {
   it('takes two arguments', () => {
-    expect(makeMove.length).toBe(2)
+    expect(makeMove.length).toBe(2);
   });
 
   it('returns false if the first argument does not correspond to a 0 in the board array(1)', () => {
@@ -116,7 +119,7 @@ describe('gameBoardModule makeMove method', () => {
 
 describe('gameBoardModule checkWin method', () => {
   it('takes one argument', () => {
-    expect(gameBoardModule.checkWin.length).toBe(1)
+    expect(gameBoardModule.checkWin.length).toBe(1);
   });
 
   it('returns false when the board is empty(only has 0s)', () => {
@@ -214,7 +217,7 @@ describe('gameBoardModule resetBoard method', () => {
   it('modifies the game board to be filled only by 0s(1)', () => {
     gameBoardModule.resetBoard();
 
-    const currentBoard = gameBoardModule.getBoard().every(cell => cell === 0);
+    const currentBoard = gameBoardModule.getBoard().every((cell) => cell === 0);
 
     expect(currentBoard).toBe(true);
   });
@@ -226,7 +229,7 @@ describe('gameBoardModule resetBoard method', () => {
     gameBoardModule.makeMove(7, 'x');
     gameBoardModule.resetBoard();
 
-    const currentBoard = gameBoardModule.getBoard().every(cell => cell === 0);
+    const currentBoard = gameBoardModule.getBoard().every((cell) => cell === 0);
 
     expect(currentBoard).toBe(true);
   });

@@ -217,7 +217,7 @@ describe('gameBoardModule resetBoard method', () => {
   it('modifies the game board to be filled only by 0s(1)', () => {
     gameBoardModule.resetBoard();
 
-    const currentBoard = gameBoardModule.getBoard().every((cell) => cell === 0);
+    const currentBoard = gameBoardModule.getBoard().every(cell => cell === 0);
 
     expect(currentBoard).toBe(true);
   });
@@ -229,7 +229,7 @@ describe('gameBoardModule resetBoard method', () => {
     gameBoardModule.makeMove(7, 'x');
     gameBoardModule.resetBoard();
 
-    const currentBoard = gameBoardModule.getBoard().every((cell) => cell === 0);
+    const currentBoard = gameBoardModule.getBoard().every(cell => cell === 0);
 
     expect(currentBoard).toBe(true);
   });

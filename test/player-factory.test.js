@@ -50,12 +50,14 @@ describe('getSymbol property', () => {
 
   it('returns the symbol with which the factory instance was initialized(1)', () => {
     const symbol = 'x';
+    const name = 'john';
     const player = PlayerFactory(name, symbol);
     expect(player.getSymbol()).toBe(symbol);
   });
 
   it('returns the symbol with which the factory instance was initialized(2)', () => {
     const symbol = 'o';
+    const name = 'john';
     const player = PlayerFactory(name, symbol);
     expect(player.getSymbol()).toBe(symbol);
   });

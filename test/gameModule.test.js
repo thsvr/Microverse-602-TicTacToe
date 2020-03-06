@@ -212,7 +212,7 @@ describe('gameModule setCurrentPlayer', () => {
       setPlayerHelper();
       arr.push(getCurrentPlayer());
     }
-    const result = arr.every((player) => [0, 1].includes(player));
+    const result = arr.every(player => [0, 1].includes(player));
     expect(result).toBe(true);
   });
 });
@@ -304,9 +304,9 @@ describe('gameModule cleanGame', () => {
 
   it('resets the board to be full of only 0s', () => {
     gameTieHelper();
-    const prevBoard = getBoard().getBoard().slice().every((n) => n === 0);
+    const prevBoard = getBoard().getBoard().slice().every(n => n === 0);
     cleanGame();
-    const newBoard = getBoard().getBoard().every((n) => n === 0);
+    const newBoard = getBoard().getBoard().every(n => n === 0);
 
     expect(prevBoard === newBoard).toBe(false);
   });

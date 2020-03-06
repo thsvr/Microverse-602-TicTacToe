@@ -1,3 +1,5 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable no-tabs */
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
@@ -17,9 +19,9 @@ module.exports = {
     	new TerserPlugin({
 	        terserOptions: {
 	            keep_classnames: true,
-	            keep_fnames: true
-	        }
-	      })
-    	]
+	            keep_fnames: true,
+	        },
+	      }),
+    	],
   },
 };

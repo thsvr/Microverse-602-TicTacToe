@@ -1,3 +1,5 @@
+import { gameModule } from './logic';
+
 const cells = document.getElementsByClassName('cell');
 const scores = document.getElementsByClassName('player-score');
 const namesDisplay = document.querySelectorAll('.name');
@@ -81,3 +83,15 @@ const startGame = () => {
   }
 };
 // eslint-enable-next-line no-unused-vars
+
+window.onload = () => {
+  const startGameBtn = document.getElementById('start-game');
+  const restartGameBtn = document.getElementById('play-again');
+  const resetGameBtn = document.getElementById('reset-game');
+  
+  startGameBtn.addEventListener('submit', () => startGame(startGameBtn));
+
+  restartGameBtn.addEventListener('click', () => playAgain());
+
+  resetGameBtn.addEventListener('click', () => resetGame());
+}

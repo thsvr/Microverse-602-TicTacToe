@@ -4,7 +4,10 @@
   "description": "[![Contributors][contributors-shield]][contributors-url]\r [![Forks][forks-shield]][forks-url]\r [![Stargazers][stars-shield]][stars-url]\r [![Issues][issues-shield]][issues-url]",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest ./test/",
+    "watch": "jest ./test/ --watch *.js",
+    "bundle": "webpack",
+    "start": "webpack-dev-server --watch --open"
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,17 @@
   "bugs": {
     "url": "https://github.com/thsvr/Microverse-602-TicTacToe/issues"
   },
-  "homepage": "https://github.com/thsvr/Microverse-602-TicTacToe#readme"
+  "homepage": "https://github.com/thsvr/Microverse-602-TicTacToe#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.8.6",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "jest": "^25.1.0",
+    "jest-runner-groups": "^1.1.1",
+    "terser-webpack-plugin": "^2.3.5",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
 }

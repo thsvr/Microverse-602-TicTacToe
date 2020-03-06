@@ -28,6 +28,7 @@
 * [About the Project](#about-the-project)
   * [Installation](#installation)
   * [Built With](#built-with)
+  * [Testing](#testing)
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
 
@@ -52,6 +53,19 @@ This project was built using these technologies.
 * HTML
 * CSS3
 * Vanila Javascript
+* Webpack
+* Babel
+* Jest
+
+### Testing
+
+This project is tested using Jest. You can run the tests using the terminal comands below:
+* to run the tests once:
+`npm test`
+
+* to run tests on watch mode:
+`npm run watch`
+
 
 <!-- CONTACT -->
 ## Contact
